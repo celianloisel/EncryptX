@@ -28,6 +28,7 @@ public class InputMessage implements Menu {
     @Override
     public void display() {
         System.out.println("\n\n==== Message ====");
+        System.out.println("Hachage sélectionné : " + menuController.getHashAlgorithm()); // Affiche l'algorithme de hachage sélectionné
         System.out.println("6. Aide");
         System.out.println("7. Retour");
         System.out.println("8. Quitter");

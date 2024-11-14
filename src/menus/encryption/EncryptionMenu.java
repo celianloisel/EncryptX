@@ -49,28 +49,28 @@ public class EncryptionMenu implements Menu {
         switch (choice) {
             case 1:
                 System.out.println("Chiffrement avec César sélectionné.");
+                menuController.setEncryptionMethod("César");
                 menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                // César encryption logic
                 break;
             case 2:
                 System.out.println("Chiffrement avec Vigenère sélectionné.");
+                menuController.setEncryptionMethod("Vigenère");
                 menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                // Vigenère encryption logic
                 break;
             case 3:
                 System.out.println("Chiffrement avec Polybe sélectionné.");
+                menuController.setEncryptionMethod("Polybe");
                 menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                // Polybe encryption logic
                 break;
             case 4:
                 System.out.println("Chiffrement avec Enigma sélectionné.");
+                menuController.setEncryptionMethod("Enigma");
                 menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                // Enigma encryption logic
                 break;
             case 5:
                 System.out.println("Chiffrement avec RC4 sélectionné.");
+                menuController.setEncryptionMethod("RC4");
                 menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                // RC4 encryption logic
                 break;
             case 6:
                 MenuUtils.displayHelp();

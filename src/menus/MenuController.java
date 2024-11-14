@@ -9,13 +9,14 @@ public class MenuController {
     private final Stack<Menu> menuStack;
     private String message;
     private boolean running = true;
+    private String encryptionMethod;
 
     /**
      * Instantiates a new Menu controller.
      */
     public MenuController() {
         this.menuStack = new Stack<>();
-        this.menuStack.push(new MainMenu(this));  // Le MainMenu est le premier menu
+        this.menuStack.push(new MainMenu(this));
     }
 
     /**
@@ -74,5 +75,23 @@ public class MenuController {
      */
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    /**
+     * Gets encryption method.
+     *
+     * @return the encryption method
+     */
+    public String getEncryptionMethod() {
+        return encryptionMethod;
+    }
+
+    /**
+     * Sets encryption method.
+     *
+     * @param encryptionMethod the encryption method
+     */
+    public void setEncryptionMethod(String encryptionMethod) {
+        this.encryptionMethod = encryptionMethod;
     }
 }

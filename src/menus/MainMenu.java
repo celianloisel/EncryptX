@@ -5,7 +5,6 @@ import java.util.Scanner;
 import menus.chopping.ChoppingMenu;
 import menus.encryption.EncryptionMenu;
 import menus.gnpa.GNPAMenu;
-import utils.MenuUtils;
 
 /**
  * The type Main menu.

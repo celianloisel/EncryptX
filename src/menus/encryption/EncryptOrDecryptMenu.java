@@ -2,7 +2,7 @@ package menus.encryption;
 
 import menus.Menu;
 import menus.MenuController;
-import utils.MenuUtils;
+import menus.MenuUtils;
 
 import java.util.Scanner;
 

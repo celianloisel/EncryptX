@@ -3,7 +3,7 @@ package menus.integrity;
 import menus.Menu;
 import menus.MenuController;
 import menus.chopping.ChoppingMenu;
-import utils.MenuUtils;
+import menus.MenuUtils;
 
 import java.util.Scanner;
 

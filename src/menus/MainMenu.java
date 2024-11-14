@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import menus.chopping.ChoppingMenu;
 import menus.encryption.EncryptionMenu;
+import menus.gnpa.GNPAMenu;
 import utils.MenuUtils;
 
 /**
@@ -57,6 +58,7 @@ public class MainMenu implements Menu {
                 break;
             case 4:
                 System.out.println("Redirection vers le menu GNPA...");
+                menuController.setCurrentMenu(new GNPAMenu(menuController));
                 // GNPA menu
                 break;
             case 5:

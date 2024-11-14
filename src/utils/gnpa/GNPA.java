@@ -1,4 +1,4 @@
-package utils;
+package utils.gnpa;
 
 /**
  * The type Gnpa.

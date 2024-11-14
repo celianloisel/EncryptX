@@ -2,8 +2,8 @@ package menus.gnpa;
 
 import menus.Menu;
 import menus.MenuController;
-import utils.GNPA;
-import utils.MenuUtils;
+import utils.gnpa.GNPA;
+import menus.MenuUtils;
 
 import java.util.Scanner;
 

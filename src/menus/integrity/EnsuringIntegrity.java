@@ -54,7 +54,7 @@ public class EnsuringIntegrity implements Menu {
                 break;
             case 2:
                 System.out.println("Le Non a été sélectionné.");
-                // Ici il faut ajouter le traitement du message en fonction des besoins de l'utilisateur
+                // Here we add message processing according to the user's needs
                 break;
             case 6:
                 MenuUtils.displayHelp();

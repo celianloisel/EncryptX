@@ -2,23 +2,16 @@ package menus.chopping;
 
 import menus.Menu;
 import menus.MenuController;
+import menus.integrity.EnsuringIntegrity;
 import menus.MenuUtils;
 
 import java.util.Scanner;
 
-/**
- * The type Encryption menu.
- */
 public class ChoppingMenu implements Menu {
 
     private final Scanner scanner;
     private final MenuController menuController;
 
-    /**
-     * Instantiates a new Chopping menu.
-     *
-     * @param menuController the menu controller
-     */
     public ChoppingMenu(MenuController menuController) {
         this.scanner = new Scanner(System.in);
         this.menuController = menuController;
@@ -38,14 +31,26 @@ public class ChoppingMenu implements Menu {
     public void handleInput() {
         int choice = MenuUtils.getValidatedIntInput(scanner);
 
+        menuController.clearHashAlgorithm();
+
         switch (choice) {
             case 1:
                 System.out.println("Hachage avec MD5 sélectionné.");
-                menuController.setCurrentMenu(new menus.inputs.InputMessage(menuController));
+                menuController.setHashAlgorithm("MD5");
+                if (menuController.getMessage() != null) {
+                    menuController.setCurrentMenu(new EnsuringIntegrity(menuController));
+                } else {
+                    menuController.setCurrentMenu(new menus.inputs.InputMessage(menuController));
+                }
                 break;
             case 2:
                 System.out.println("Hachage avec SHA-256 sélectionné.");
-                menuController.setCurrentMenu(new menus.inputs.InputMessage(menuController));
+                menuController.setHashAlgorithm("SHA-256");
+                if (menuController.getMessage() != null) {
+                    menuController.setCurrentMenu(new EnsuringIntegrity(menuController));
+                } else {
+                    menuController.setCurrentMenu(new menus.inputs.InputMessage(menuController));
+                }
                 break;
             case 6:
                 MenuUtils.displayHelp();

@@ -10,6 +10,7 @@ public class MenuController {
     private String message;
     private boolean running = true;
     private String encryptionMethod;
+    private String hashAlgorithm;
 
     /**
      * Instantiates a new Menu controller.
@@ -93,5 +94,30 @@ public class MenuController {
      */
     public void setEncryptionMethod(String encryptionMethod) {
         this.encryptionMethod = encryptionMethod;
+    }
+
+    /**
+     * Gets hash algorithm.
+     *
+     * @return the hash algorithm
+     */
+    public String getHashAlgorithm() {
+        return hashAlgorithm;
+    }
+
+    /**
+     * Sets hash algorithm.
+     *
+     * @param hashAlgorithm the hash algorithm
+     */
+    public void setHashAlgorithm(String hashAlgorithm) {
+        this.hashAlgorithm = hashAlgorithm;
+    }
+
+    /**
+     * Clear hash algorithm.
+     */
+    public void clearHashAlgorithm() {
+        this.hashAlgorithm = null;
     }
 }

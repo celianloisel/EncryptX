@@ -1,5 +1,7 @@
 package utils.hashing;
 
+import utils.encryption.rc4.HexUtils;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -29,30 +31,12 @@ public class Sha_256 {
             // Update the digest with the text string's bytes
             byte[] hashBytes = messageDigest.digest(text.getBytes());
 
-            StringBuilder hexString = getHexString(hashBytes);
+            StringBuilder hexString = new StringBuilder(HexUtils.bytesToHex(hashBytes));
 
             return String.valueOf(hexString);
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.SEVERE, "Error computing SHA-256 hash", e);
             return null;
         }
-    }
-
-    /**
-     * Converts a byte array to a hexadecimal string.
-     *
-     * @param hashBytes The byte array to be converted.
-     * @return A {@link StringBuilder} containing the hexadecimal representation of the byte array.
-     */
-    private static StringBuilder getHexString(byte[] hashBytes) {
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hashBytes) {
-            // Format each byte as a two-digit hexadecimal value and append to the hexString
-            // "%02x" means to convert the byte to a two-character hexadecimal string
-            // %02x: %x means that the number will be formatted in hexadecimal, and 02 indicates that the number will always be displayed with two digits (with a leading zero if necessary).
-            // (padded with a leading zero if it's a single character, e.g., 0f instead of f)
-            hexString.append(String.format("%02x", b));
-        }
-        return hexString;
     }
 }

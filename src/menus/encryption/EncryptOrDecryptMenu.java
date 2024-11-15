@@ -28,7 +28,7 @@ public class EncryptOrDecryptMenu implements Menu {
         // Algorithm menu selection according to the chosen encryption method
         String encryptionMethod = menuController.getEncryptionMethod();
         if ("RC4".equals(encryptionMethod)) {
-            this.algorithmMenu = new RC4Menu();
+            this.algorithmMenu = new RC4Menu(menuController);
         }
         // Other algorithms here if necessary
     }

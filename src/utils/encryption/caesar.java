@@ -17,63 +17,46 @@ import java.util.Scanner;
  *
  * @author Your Name
  */
-public class cesar {
-
-    /**
-     * Prompts the user to choose between encryption and decryption.
-     * Calls the appropriate function based on the user's choice.
-     */
-    public static void choose() {
-        Scanner sc = new Scanner(System.in);
-
-        // Prompt user to choose encryption or decryption
-        while (true) {
-            System.out.println("   Do you want to encrypt or decrypt? (E/D): ");
-            String choice = sc.nextLine().toUpperCase();
-            if (choice.equals("E")) {
-                cesar.checkMessageRestriction(true); // Call encryption process
-            } else if (choice.equals("D")) {
-                cesar.checkMessageRestriction(false); // Call decryption process
-            } else {
-                System.out.println("Please enter 'E' to encrypt or 'D' to decrypt.");
-            }
-        }
-    }
+public class caesar {
 
     /**
      * Encrypts the given message using the Caesar cipher with the specified shift value.
      *
      * @param message The plaintext message to be encrypted. Must contain lowercase letters only.
-     * @param shift The number of positions to shift each letter. Must be a positive integer.
+     * @param shift   The number of positions to shift each letter. Must be a positive integer.
+     * @return
      */
-    public static void cesarEncryption(String message, int shift) {
-        int moduleShift = shift % 26; // Ensure the shift is within 26 characters
-        char calculation;
+    public static String cesarEncryption(String message, int shift) {
+        int moduleShift = shift % 26;
+        StringBuilder encryptedMessage = new StringBuilder();
 
-        // Encrypt each letter in the message
         for (int i = 0; i < message.length(); i++) {
             char charToEncrypt = message.charAt(i);
-            calculation = (char) (((charToEncrypt - 'a' + moduleShift) % 26) + 'a');
-            System.out.print(calculation); // Print the encrypted character
+            char encryptedChar = (char) (((charToEncrypt - 'a' + moduleShift) % 26) + 'a');
+            encryptedMessage.append(encryptedChar);
         }
+
+        return encryptedMessage.toString();
     }
 
     /**
      * Decrypts the given message using the Caesar cipher with the specified shift value.
      *
      * @param message The encrypted message to be decrypted. Must contain lowercase letters only.
-     * @param shift The number of positions to reverse-shift each letter. Must be a positive integer.
+     * @param shift   The number of positions to reverse-shift each letter. Must be a positive integer.
+     * @return
      */
-    public static void cesarDecryption(String message, int shift) {
-        int moduleShift = shift % 26; // Ensure the shift is within 26 characters
-        char calculation;
+    public static String cesarDecryption(String message, int shift) {
+        int moduleShift = shift % 26;
+        StringBuilder decryptedMessage = new StringBuilder();
 
-        // Decrypt each letter in the message
         for (int i = 0; i < message.length(); i++) {
             char charToDecrypt = message.charAt(i);
-            calculation = (char) (((charToDecrypt - 'a' - moduleShift + 26) % 26) + 'a');
-            System.out.print(calculation); // Print the decrypted character
+            char decryptedChar = (char) (((charToDecrypt - 'a' - moduleShift + 26) % 26) + 'a');
+            decryptedMessage.append(decryptedChar);
         }
+
+        return decryptedMessage.toString();
     }
 
     /**
@@ -90,7 +73,7 @@ public class cesar {
         for (int a = 0; a < 3; a++) { // Allow up to 3 attempts
             message = sc.nextLine();
             if (message.matches("[a-z]+")) { // Validate the message with regex
-                cesar.checkShiftRestriction(message, isEncrypt); // Proceed to check the shift
+                caesar.checkShiftRestriction(message, isEncrypt); // Proceed to check the shift
                 return; // Exit the loop upon successful validation
             } else {
                 System.out.println("The message must contain only lowercase letters. "
@@ -103,10 +86,11 @@ public class cesar {
      * Validates the shift value provided by the user and ensures it is a positive integer.
      * If valid, it performs the encryption or decryption process.
      *
-     * @param message The validated message to be encrypted or decrypted.
+     * @param message   The validated message to be encrypted or decrypted.
      * @param isEncrypt {@code true} if the user chooses encryption, {@code false} for decryption.
+     * @return
      */
-    public static void checkShiftRestriction(String message, Boolean isEncrypt) {
+    public static String checkShiftRestriction(String message, Boolean isEncrypt) {
         Scanner sc = new Scanner(System.in);
         String shift;
 
@@ -115,15 +99,16 @@ public class cesar {
             shift = sc.nextLine();
             if (shift.matches("^[1-9][0-9]*$")) { // Validate the shift as a positive integer
                 if (isEncrypt) {
-                    cesar.cesarEncryption(message, Integer.parseInt(shift)); // Perform encryption
+                    caesar.cesarEncryption(message, Integer.parseInt(shift));
                 } else {
-                    cesar.cesarDecryption(message, Integer.parseInt(shift)); // Perform decryption
+                    caesar.cesarDecryption(message, Integer.parseInt(shift));
                 }
-                return; // Exit the loop upon successful validation
+                return shift;
             } else {
                 System.out.println("Please enter a POSITIVE number. "
                         + (3 - a) + " attempt(s) left.");
             }
         }
+        return message;
     }
 }

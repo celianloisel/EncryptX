@@ -4,6 +4,8 @@ import menus.Menu;
 import menus.MenuController;
 import menus.MenuUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -36,7 +38,7 @@ public class EncryptionMenu implements Menu {
         System.out.println("4. Enigma");
         System.out.println("5. RC4");
 
-        System.out.println("\n");
+        System.out.println("\nEntrez une combinaison de chiffres pour définir la séquence de chiffrement (ex : 125 pour César, Vigenère, RC4).");
         System.out.println("6. Aide");
         System.out.println("7. Retour");
         System.out.println("8. Quitter");
@@ -44,47 +46,51 @@ public class EncryptionMenu implements Menu {
 
     @Override
     public void handleInput() {
-        int choice = MenuUtils.getValidatedIntInput(scanner);
+        System.out.print("Entrez votre séquence de chiffrement : ");
+        String input = scanner.nextLine();
 
-        switch (choice) {
-            case 1:
-                System.out.println("Chiffrement avec César sélectionné.");
-                menuController.setEncryptionMethod("César");
-                menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                break;
-            case 2:
-                System.out.println("Chiffrement avec Vigenère sélectionné.");
-                menuController.setEncryptionMethod("Vigenère");
-                menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                break;
-            case 3:
-                System.out.println("Chiffrement avec Polybe sélectionné.");
-                menuController.setEncryptionMethod("Polybe");
-                menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                break;
-            case 4:
-                System.out.println("Chiffrement avec Enigma sélectionné.");
-                menuController.setEncryptionMethod("Enigma");
-                menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                break;
-            case 5:
-                System.out.println("Chiffrement avec RC4 sélectionné.");
-                menuController.setEncryptionMethod("RC4");
-                menuController.setCurrentMenu(new EncryptOrDecryptMenu(menuController));
-                break;
-            case 6:
-                MenuUtils.displayHelp();
-                break;
-            case 7:
-                menuController.goBack();
-                break;
-            case 8:
-                System.out.println("Merci d'avoir utilisé l'application. À bientôt !");
-                menuController.stop();
-                break;
-            default:
-                System.out.println("Option invalide, veuillez réessayer.");
-                break;
+        if (input.equals("6")) {
+            MenuUtils.displayHelp();
+        } else if (input.equals("7")) {
+            menuController.goBack();
+        } else if (input.equals("8")) {
+            System.out.println("Merci d'avoir utilisé l'application. À bientôt !");
+            menuController.stop();
+        } else {
+            List<String> encryptionMethods = new ArrayList<>();
+
+            // Interpreting the encryption sequence
+            for (char c : input.toCharArray()) {
+                switch (c) {
+                    case '1':
+                        encryptionMethods.add("César");
+                        break;
+                    case '2':
+                        encryptionMethods.add("Vigenère");
+                        break;
+                    case '3':
+                        encryptionMethods.add("Polybe");
+                        break;
+                    case '4':
+                        encryptionMethods.add("Enigma");
+                        break;
+                    case '5':
+                        encryptionMethods.add("RC4");
+                        break;
+                    default:
+                        System.out.println("Option invalide, veuillez réessayer.");
+                        break;
+                }
+            }
+
+            if (encryptionMethods.isEmpty()) {
+                System.out.println("Aucun algorithme valide sélectionné. Veuillez réessayer.");
+                return;
+            }
+
+            // Pass the algorithm sequence to the controller for sequential processing
+            menuController.setEncryptionSequence(encryptionMethods);
+            menuController.setCurrentMenu(new EncryptOrDecryptSequenceMenu(menuController));
         }
     }
 }

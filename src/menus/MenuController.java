@@ -1,5 +1,6 @@
 package menus;
 
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -10,6 +11,7 @@ public class MenuController {
     private String message;
     private boolean running = true;
     private String encryptionMethod;
+    private List<String> encryptionSequence;
     private String hashAlgorithm;
 
     /**
@@ -119,5 +121,13 @@ public class MenuController {
      */
     public void clearHashAlgorithm() {
         this.hashAlgorithm = null;
+    }
+
+    public void setEncryptionSequence(List<String> encryptionSequence) {
+        this.encryptionSequence = encryptionSequence;
+    }
+
+    public List<String> getEncryptionSequence() {
+        return encryptionSequence;
     }
 }

@@ -3,7 +3,7 @@ package utils.encryption;
 import java.util.Scanner;
 
 /**
- * The {@code cesar} class provides methods for encrypting and decrypting messages using the Caesar cipher.
+ * The {@code caesar} class provides methods for encrypting and decrypting messages using the Caesar cipher.
  * The cipher shifts each letter of the message by a specified number of places in the alphabet.
  *
  * <p>
@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author Your Name
  */
-public class cesar {
+public class caesar {
 
     /**
      * Prompts the user to choose between encryption and decryption.
@@ -31,9 +31,9 @@ public class cesar {
             System.out.println("   Do you want to encrypt or decrypt? (E/D): ");
             String choice = sc.nextLine().toUpperCase();
             if (choice.equals("E")) {
-                cesar.checkMessageRestriction(true); // Call encryption process
+                caesar.checkMessageRestriction(true); // Call encryption process
             } else if (choice.equals("D")) {
-                cesar.checkMessageRestriction(false); // Call decryption process
+                caesar.checkMessageRestriction(false); // Call decryption process
             } else {
                 System.out.println("Please enter 'E' to encrypt or 'D' to decrypt.");
             }
@@ -90,7 +90,7 @@ public class cesar {
         for (int a = 0; a < 3; a++) { // Allow up to 3 attempts
             message = sc.nextLine();
             if (message.matches("[a-z]+")) { // Validate the message with regex
-                cesar.checkShiftRestriction(message, isEncrypt); // Proceed to check the shift
+                caesar.checkShiftRestriction(message, isEncrypt); // Proceed to check the shift
                 return; // Exit the loop upon successful validation
             } else {
                 System.out.println("The message must contain only lowercase letters. "
@@ -115,9 +115,9 @@ public class cesar {
             shift = sc.nextLine();
             if (shift.matches("^[1-9][0-9]*$")) { // Validate the shift as a positive integer
                 if (isEncrypt) {
-                    cesar.cesarEncryption(message, Integer.parseInt(shift)); // Perform encryption
+                    caesar.cesarEncryption(message, Integer.parseInt(shift)); // Perform encryption
                 } else {
-                    cesar.cesarDecryption(message, Integer.parseInt(shift)); // Perform decryption
+                    caesar.cesarDecryption(message, Integer.parseInt(shift)); // Perform decryption
                 }
                 return; // Exit the loop upon successful validation
             } else {

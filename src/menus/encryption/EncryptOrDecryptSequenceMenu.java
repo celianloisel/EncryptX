@@ -2,11 +2,11 @@ package menus.encryption;
 
 import menus.Menu;
 import menus.MenuController;
-/*import menus.encryption.algorithms.CaesarMenu;
-import menus.encryption.algorithms.VigenereMenu;
-import menus.encryption.algorithms.PolybeMenu;
-import menus.encryption.algorithms.EnigmaMenu;*/
 import menus.encryption.rc4.RC4Menu;
+import utils.encryption.caesar;
+import utils.encryption.vigenere;
+import utils.encryption.Polybius;
+import utils.encryption.Enigma;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +19,11 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
     private final MenuController menuController;
     private List<String> encryptionSequence;
 
+    /**
+     * Instantiates a new Encrypt or decrypt sequence menu.
+     *
+     * @param menuController the menu controller
+     */
     public EncryptOrDecryptSequenceMenu(MenuController menuController) {
         this.scanner = new Scanner(System.in);
         this.menuController = menuController;
@@ -37,7 +42,7 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
     @Override
     public void handleInput() {
         int choice = scanner.nextInt();
-        scanner.nextLine(); // Consommer le retour à la ligne
+        scanner.nextLine();
 
         switch (choice) {
             case 1:
@@ -57,36 +62,39 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
     }
 
     private void executeSequence() {
-        // Vérifie si un message est déjà stocké, sinon demande le message initial
+        // Checks if a message is already stored, otherwise requests the initial message
         if (menuController.getMessage() == null) {
             System.out.print("Entrez le message à chiffrer : ");
             String message = scanner.nextLine();
             menuController.setMessage(message);
         }
 
-        // Exécute chaque algorithme dans l'ordre de la séquence
+        String message = menuController.getMessage();
+
+        // Execute each algorithm in sequence
         for (String algorithm : encryptionSequence) {
             switch (algorithm) {
-/*                case "César":
+                case "César":
                     System.out.println("Application de César...");
-                    CaesarMenu caesarMenu = new CaesarMenu(menuController);
-                    caesarMenu.processEncryption();
+                    System.out.print("Entrez le décalage pour César : ");
+                    int shift = scanner.nextInt();
+                    scanner.nextLine(); // Consomme le retour à la ligne
+                    caesar.cesarEncryption(message, shift);
                     break;
                 case "Vigenère":
                     System.out.println("Application de Vigenère...");
-                    VigenereMenu vigenereMenu = new VigenereMenu(menuController);
-                    vigenereMenu.processEncryption();
+                    System.out.print("Entrez la clé pour Vigenère : ");
+                    String keyVigenere = scanner.nextLine();
+                    vigenere.vigenereEncryption(message, keyVigenere);
                     break;
                 case "Polybe":
                     System.out.println("Application de Polybe...");
-                    PolybeMenu polybeMenu = new PolybeMenu(menuController);
-                    polybeMenu.processEncryption();
+                    message = Polybius.polybiusCipher(message);
                     break;
                 case "Enigma":
                     System.out.println("Application de Enigma...");
-                    EnigmaMenu enigmaMenu = new EnigmaMenu(menuController);
-                    enigmaMenu.processEncryption();
-                    break;*/
+                    message = Enigma.enigmaEncrypt(message);
+                    break;
                 case "RC4":
                     System.out.println("Application de RC4...");
                     RC4Menu rc4Menu = new RC4Menu(menuController);
@@ -96,9 +104,11 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
                     System.out.println("Algorithme non supporté : " + algorithm);
                     break;
             }
+            System.out.println("Message après " + algorithm + " : " + message);
         }
 
-        // Affiche le message final après application de tous les algorithmes
-        System.out.println("Message final après séquence : " + menuController.getMessage());
+        // Update final message in MenuController
+        menuController.setMessage(message);
+        System.out.println("Message final après séquence : " + message);
     }
 }

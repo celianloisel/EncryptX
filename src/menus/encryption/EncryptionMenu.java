@@ -59,7 +59,7 @@ public class EncryptionMenu implements Menu {
         } else {
             List<String> encryptionMethods = new ArrayList<>();
 
-            // Interprétation de la séquence de chiffrement
+            // Interpreting the encryption sequence
             for (char c : input.toCharArray()) {
                 switch (c) {
                     case '1':
@@ -88,7 +88,7 @@ public class EncryptionMenu implements Menu {
                 return;
             }
 
-            // Passer la séquence d'algorithmes au contrôleur pour traitement en séquence
+            // Pass the algorithm sequence to the controller for sequential processing
             menuController.setEncryptionSequence(encryptionMethods);
             menuController.setCurrentMenu(new EncryptOrDecryptSequenceMenu(menuController));
         }

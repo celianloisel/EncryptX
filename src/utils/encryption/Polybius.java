@@ -25,7 +25,7 @@ public class Polybius {
      * @return A String containing the encrypted text, where each letter is replaced by its coordinates in the Polybius
      * square, and spaces are retained as-is.
      */
-    public String polybiusCipher(String text) {
+    public static String polybiusCipher(String text) {
         char[] textArray = text.toLowerCase().toCharArray();
         StringBuilder result = new StringBuilder();
 

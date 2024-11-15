@@ -2,8 +2,27 @@ package utils.encryption;
 
 import java.util.Scanner;
 
+/**
+ * The {@code vigenere} class provides methods for encrypting and decrypting messages using the Vigenère cipher.
+ * The cipher uses a keyword to shift each letter of the message for encryption and decryption.
+ *
+ * <p>
+ * This class supports user interaction to choose encryption or decryption, validates the input (lowercase letters only),
+ * and performs the necessary operations using the provided key.
+ * </p>
+ *
+ * <p>
+ * Usage: Users can choose to encrypt or decrypt a message by providing the appropriate inputs.
+ * </p>
+ *
+ * @author Your Name
+ */
 public class vigenere {
 
+    /**
+     * Prompts the user to choose between encryption and decryption.
+     * Calls the appropriate function based on the user's choice.
+     */
     public static void choose() {
         Scanner sc = new Scanner(System.in);
 
@@ -22,13 +41,19 @@ public class vigenere {
         }
     }
 
+    /**
+     * Validates the message and key provided by the user and calls the appropriate
+     * encryption or decryption function if valid.
+     * Allows up to 3 attempts to enter valid inputs (lowercase letters only).
+     *
+     * @param isEncrypt {@code true} if the user chooses encryption, {@code false} for decryption.
+     */
     public static void checkMessageAndKeyRestriction(boolean isEncrypt) {
         Scanner sc = new Scanner(System.in);
         String message, key;
-        int a = 0;
 
         // Allow 3 attempts to enter valid message and key
-        for ( a = 0; a <3; a++) {
+        for (int a = 0; a < 3; a++) {
             System.out.print("Enter the message (lowercase letters only): ");
             message = sc.nextLine();
 
@@ -46,14 +71,21 @@ public class vigenere {
                 return; // Exit loop if input is valid
             } else {
                 // Show error message and remaining attempts
-                System.out.println("Your KEY or MESSAGE has INCORECT syntax : WARNING!" + (3-a)+ " attempts: please only LOWER CASE");
+                System.out.println("Your KEY or MESSAGE has INCORRECT syntax : WARNING! "
+                        + (3 - a) + " attempts left. Please only use LOWERCASE letters.");
             }
         }
 
         // If all attempts fail, return to main menu
-        System.out.println("Too many invalid attempts. ");
+        System.out.println("Too many invalid attempts.");
     }
 
+    /**
+     * Encrypts the given message using the Vigenère cipher with the specified key.
+     *
+     * @param message The plaintext message to be encrypted. Must contain lowercase letters only.
+     * @param key The keyword used for encryption. Must contain lowercase letters only.
+     */
     public static void vigenereEncryption(String message, String key) {
         StringBuilder encryptedMessage = new StringBuilder();
 
@@ -67,6 +99,12 @@ public class vigenere {
         }
     }
 
+    /**
+     * Decrypts the given message using the Vigenère cipher with the specified key.
+     *
+     * @param message The encrypted message to be decrypted. Must contain lowercase letters only.
+     * @param key The keyword used for decryption. Must contain lowercase letters only.
+     */
     public static void vigenereDecryption(String message, String key) {
         StringBuilder decryptedMessage = new StringBuilder();
         int keyLength = key.length(); // Get the length of the key
@@ -78,8 +116,7 @@ public class vigenere {
             int shift = keyChar - 'a'; // Calculate shift from key character
             char decryptedChar = (char) (((messageChar - 'a' - shift + 26) % 26) + 'a'); // Decrypt character
 
-            System.out.print(decryptedChar + " " + ""); // Print the decrypted character
+            System.out.print(decryptedChar + " "); // Print the decrypted character
         }
-
     }
 }

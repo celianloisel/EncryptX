@@ -7,11 +7,19 @@ import menus.MenuUtils;
 
 import java.util.Scanner;
 
+/**
+ * The type Chopping menu.
+ */
 public class ChoppingMenu implements Menu {
 
     private final Scanner scanner;
     private final MenuController menuController;
 
+    /**
+     * Instantiates a new Chopping menu.
+     *
+     * @param menuController the menu controller
+     */
     public ChoppingMenu(MenuController menuController) {
         this.scanner = new Scanner(System.in);
         this.menuController = menuController;

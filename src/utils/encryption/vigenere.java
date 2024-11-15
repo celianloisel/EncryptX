@@ -86,26 +86,29 @@ public class vigenere {
      * @param message The plaintext message to be encrypted. Must contain lowercase letters only.
      * @param key The keyword used for encryption. Must contain lowercase letters only.
      */
-    public static void vigenereEncryption(String message, String key) {
+    public static String vigenereEncryption(String message, String key) {
         StringBuilder encryptedMessage = new StringBuilder();
 
         // Encrypt each letter of the message
         for (int i = 0; i < message.length(); i++) {
-            char messageChar = message.charAt(i); // Current message character
-            char keyChar = key.charAt(i % key.length()); // Current key character (repeats if shorter)
-            int shift = keyChar - 'a'; // Calculate shift from key character
-            char encryptedChar = (char) (((messageChar - 'a' + shift) % 26) + 'a'); // Encrypt character
-            System.out.print(encryptedChar); // Print the encrypted character
+            char messageChar = message.charAt(i);
+            char keyChar = key.charAt(i % key.length());
+            int shift = keyChar - 'a';
+            char encryptedChar = (char) (((messageChar - 'a' + shift) % 26) + 'a');
+            encryptedMessage.append(encryptedChar);
         }
+
+        return encryptedMessage.toString();
     }
 
     /**
      * Decrypts the given message using the Vigenère cipher with the specified key.
      *
      * @param message The encrypted message to be decrypted. Must contain lowercase letters only.
-     * @param key The keyword used for decryption. Must contain lowercase letters only.
+     * @param key     The keyword used for decryption. Must contain lowercase letters only.
+     * @return
      */
-    public static void vigenereDecryption(String message, String key) {
+    public static String vigenereDecryption(String message, String key) {
         StringBuilder decryptedMessage = new StringBuilder();
         int keyLength = key.length(); // Get the length of the key
 
@@ -115,8 +118,9 @@ public class vigenere {
             char keyChar = key.charAt(i % keyLength); // Current key character (repeats if shorter)
             int shift = keyChar - 'a'; // Calculate shift from key character
             char decryptedChar = (char) (((messageChar - 'a' - shift + 26) % 26) + 'a'); // Decrypt character
-
-            System.out.print(decryptedChar + " "); // Print the decrypted character
+            decryptedMessage.append(decryptedChar);
         }
+
+        return decryptedMessage.toString();
     }
 }

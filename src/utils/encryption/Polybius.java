@@ -59,7 +59,7 @@ public class Polybius {
      *             in the Polybius square. Spaces are retained as-is.
      * @return A String containing the decrypted text, with each coordinate pair replaced by its corresponding letter.
      */
-    public String polybiusDecipher(String text) {
+    public static String polybiusDecipher(String text) {
         char[] textArray = text.toCharArray();
         StringBuilder result = new StringBuilder();
         String[][] polybiusSquare = generatePolybiusSquare();
@@ -93,7 +93,7 @@ public class Polybius {
      * @return A 5x5 two-dimensional array of strings, representing the Polybius square. Each cell in the array
      * contains a single lowercase letter.
      */
-    public String[][] generatePolybiusSquare() {
+    public static String[][] generatePolybiusSquare() {
         int columns = 5;
         int rows = 5;
 

@@ -59,42 +59,42 @@ public class caesar {
         return decryptedMessage.toString();
     }
 
-    /**
+/*    *//**
      * Validates the message provided by the user and ensures it meets the format restrictions.
      * If valid, it proceeds to check the shift value.
      *
      * @param isEncrypt {@code true} if the user chooses encryption, {@code false} for decryption.
-     */
+     *//*
     public static void checkMessageRestriction(Boolean isEncrypt) {
         Scanner sc = new Scanner(System.in);
         String message;
 
-        System.out.print("Enter the message (ONLY LOWERCASE, no spaces or special characters): ");
+        System.out.print("Saisissez le message (UNIQUEMENT en minuscules, sans espaces ni caractères spéciaux).): ");
         for (int a = 0; a < 3; a++) { // Allow up to 3 attempts
             message = sc.nextLine();
             if (message.matches("[a-z]+")) { // Validate the message with regex
                 caesar.checkShiftRestriction(message, isEncrypt); // Proceed to check the shift
                 return; // Exit the loop upon successful validation
             } else {
-                System.out.println("The message must contain only lowercase letters. "
-                        + (3 - a) + " attempt(s) left.");
+                System.out.println("Le message ne doit contenir que des lettres minuscules. "
+                        + (3 - a) + " tentative(s) laissée(s).");
             }
         }
     }
 
-    /**
+    *//**
      * Validates the shift value provided by the user and ensures it is a positive integer.
      * If valid, it performs the encryption or decryption process.
      *
      * @param message   The validated message to be encrypted or decrypted.
      * @param isEncrypt {@code true} if the user chooses encryption, {@code false} for decryption.
      * @return
-     */
+     *//*
     public static String checkShiftRestriction(String message, Boolean isEncrypt) {
         Scanner sc = new Scanner(System.in);
         String shift;
 
-        System.out.print("How much do you want to shift? ");
+        System.out.print("Dans quelle mesure voulez-vous changer de cap ? ");
         for (int a = 0; a < 3; a++) { // Allow up to 3 attempts
             shift = sc.nextLine();
             if (shift.matches("^[1-9][0-9]*$")) { // Validate the shift as a positive integer
@@ -105,10 +105,10 @@ public class caesar {
                 }
                 return shift;
             } else {
-                System.out.println("Please enter a POSITIVE number. "
-                        + (3 - a) + " attempt(s) left.");
+                System.out.println("Veuillez entrer un nombre POSITIF. "
+                        + (3 - a) + " tentative(s) laissée(s).");
             }
         }
         return message;
-    }
+    }*/
 }

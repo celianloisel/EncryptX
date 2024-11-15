@@ -115,14 +115,11 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
                 case "César":
                     System.out.println("Application de César...");
                     System.out.print("Entrez le décalage pour César : ");
+                    int shift = scanner.nextInt();
                     scanner.nextLine();
-
-                    if (isEncrypting) {
-                        caesar.checkMessageRestriction(true);
-                    } else {
-                        caesar.checkMessageRestriction(false);
-                    }
-                    break;
+                    return isEncrypting
+                            ? caesar.cesarEncryption(message, shift)
+                            : caesar.cesarDecryption(message, shift);
 
                 case "Vigenère":
                     System.out.println("Application de Vigenère...");
@@ -158,6 +155,5 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
             System.out.println("Erreur lors de l'application de l'algorithme : " + e.getMessage());
             return message;
         }
-        return algorithm;
     }
 }

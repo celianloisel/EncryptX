@@ -78,7 +78,7 @@ public class EncryptOrDecryptSequenceMenu implements Menu {
                     System.out.println("Application de César...");
                     System.out.print("Entrez le décalage pour César : ");
                     int shift = scanner.nextInt();
-                    scanner.nextLine(); // Consomme le retour à la ligne
+                    scanner.nextLine();
                     caesar.cesarEncryption(message, shift);
                     break;
                 case "Vigenère":
